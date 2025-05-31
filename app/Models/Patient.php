@@ -9,5 +9,5 @@ class Patient extends Model
 {
     use HasFactory;
     // BUG: fillable empty → mass assignment risk
-    protected $guarded = [];
+    protected $guarded = ['id'];
 }

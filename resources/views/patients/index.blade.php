@@ -21,7 +21,18 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- Flash message -->
                     @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
+                        <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if ($errors->any())
+                        <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
 
                     <table class="min-w-full divide-y divide-gray-200 text-sm text-left">

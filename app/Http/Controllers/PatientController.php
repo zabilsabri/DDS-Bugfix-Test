@@ -5,15 +5,19 @@ namespace App\Http\Controllers; // BUG: wrong namespace, should be App\Http\Cont
 // BUG: missing use Patient model
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PatientController
 {
     public function create(Request $request)
     {
-        // BUG: missing validation
-        $data = $request->all();
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'gender' => ['required', Rule::in(['male', 'female'])],
+            'birthdate' => 'required|date'
+        ]);
         // BUG: undefined model reference
-        Patient::create($data);
+        Patient::create($validatedData);
 
         return redirect('/patients')->with('success','Patient added');
     }

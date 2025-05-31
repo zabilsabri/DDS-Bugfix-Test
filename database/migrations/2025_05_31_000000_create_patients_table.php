@@ -15,7 +15,7 @@ return new class extends Migration
             // BUG: gender should be enum/male female but left as integer
             $table->enum('gender', ['male', 'female']);
             // BUG: birthdate stored as string
-            $table->string('birthdate');
+            $table->date('birthdate');
             $table->timestamps();
         });
     }
